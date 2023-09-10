@@ -1,0 +1,23 @@
+body {
+    font-family: 'Open Sans', serif;
+    color: darkblue;
+    background-color: ivory;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 950px;
+}
+
+h1, h2 {
+    font-family: 'Oswald', serif;
+}
+
+img {
+    float: left;
+}
+
+.horizontal-menu a {
+    padding: 40px;
+    margin-right: 40px;
+}
