@@ -40,7 +40,7 @@ function changeClassName(element) {
         progress = 'Get going!' ;
     } */
 
-    if ( hits_spins_ratio >= 0.5 && hits < spins) {
+/*  if ( hits_spins_ratio >= 0.5 && hits < spins) {
         progress = 'You win!';
     } else if ( hits_spins_ratio >= 0.25 && hits_spins_ratio < 0.5 ) {
         progress = 'Almost there!';
@@ -49,6 +49,19 @@ function changeClassName(element) {
     } else {
         progress = 'Get Going!';
     } 
+    win_span.innerHTML = progress; */
+
+    if (hits_spins_ratio > 0) {
+        if (hits_spins_ratio >= 0.5 && hits < spins) {
+            progress = 'You win!';
+        } else if (hits_spins_ratio >= 0.25) {
+            progress = 'Almost there!';
+        } else {
+            progress = 'On your way!';
+        }
+    } else {
+        progress = 'Get going!';
+    }
     win_span.innerHTML = progress;
 }
 
@@ -87,7 +100,7 @@ function resetClassName(element) {
          progress = 'Get going!' ;
     } */
     
-    if ( hits_spins_ratio >= 0.5 && hits < spins) {
+/*  if ( hits_spins_ratio >= 0.5 && hits < spins) {
         progress = 'You win!';
     } else if ( hits_spins_ratio >= 0.25 && hits_spins_ratio < 0.5 ) {
         progress = 'Almost there!';
@@ -96,5 +109,18 @@ function resetClassName(element) {
     } else {
         progress = 'Get Going!';
     } 
+    win_span.innerHTML = progress; */
+    
+    if (hits_spins_ratio > 0) {
+        if (hits_spins_ratio >= 0.5 && hits < spins) {
+            progress = 'You win!';
+        } else if (hits_spins_ratio >= 0.25) {
+            progress = 'Almost there!';
+        } else {
+            progress = 'On your way!';
+        }
+    } else {
+        progress = 'Get going!';
+    }
     win_span.innerHTML = progress;
 }
