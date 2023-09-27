@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Smartphone Products</title>
+    <link rel="stylesheet" href="products-style.css">
+</head>
+<body onload="hits_span.innerHTML = hits; spins_span.innerHTML = spins;">
+
+    <header>
+        <p id="name"></p>
+        <h1>Used Smart Phone Store</h1>
+    </header>
+
+    <script>
+        let first_name="Hani";
+        let last_name="Bae";
+        let full_name="<span style='font-weight: bold; font-size: 600%;'>" + first_name + " " + "</span>" + "<span style='font-style: italic; font-size: 600%;'>" + last_name + "</span>" + "<span style='font-size: 600%;'>" + "'s" + "</span>";
+        document.getElementById("name").innerHTML=full_name;
+    </script>
+
+    <p style="text-align: center; font-weight: bold;">
+        Hits:<span id="hits_span">0</span>
+        Spins:<span id="spins_span">0</span>
+        Hit/Spin:<span id="hit_spin_span">0</span>
+        You win:<span id="win_span">pending...</span>
+    </p>
+
+    <div><main class="main">
+        <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
+            <h2>HTC</h2>
+            <p>&dollar;40</p>
+            <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg">
+        </section>,
+        <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
+            <h2>Apple</h2>
+            <p>&dollar;75</p>
+            <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/iphone-3gs.jpg">
+        </section>,
+        <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
+            <h2>Nokia</h2>
+            <p>&dollar;35</p>
+            <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/Nokia.jpg">
+        </section>,
+        <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
+            <h2>Samsung</h2>
+            <p>&dollar;45</p>
+            <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/Samsung.jpg">
+        </section>,
+        <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
+            <h2>Blackberry</h2>
+            <p>&dollar;10</p>
+            <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/Blackberry.jpg">
+        </section>
+    </main></div>
+    <br>
+
+
+    <script>
+        let tableHeaderText = `
+            Your One Stop For Used Phones - ${first_name[0]}.${last_name[0]}'s
+        `;
+        let line = 1
+        let now = new Date();
+        let currentYear = now.getFullYear();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let amPm = (hours < 12) ? 'AM' : 'PM'; hours = (hours + 11) % 12 + 1;
+        let tableHTML = `
+            <table border="1" style="margin-left: auto; margin-right: auto; text-align: center;">
+                <tbody>
+                    <tr>
+                        <th colspan="2">
+                            <h1>${tableHeaderText}</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>${line++}.</td>
+                        <td><br>Copyright @ ${first_name} ${last_name}</td>
+                    </tr>
+                    <tr>
+                        <td>${line++}.</td>
+                        <td>${currentYear}</td>
+                    </tr>
+                    <tr>
+                        <td>${line++}.</td>
+                        <td>${hours}:${(minutes < 10 ? '0' : '') + minutes} ${amPm}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+        document.write(tableHTML);
+    </script>
+</body>
+<script src="./products_display.js"></script>
+</html>
