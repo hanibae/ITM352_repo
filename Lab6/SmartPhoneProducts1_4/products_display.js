@@ -16,16 +16,16 @@ function changeClassName(element) {
     spins_span.innerHTML=spins;
     hit_spin_span.innerHTML=Number(hits/spins).toFixed(2);
 
-    if(spins<2*hits&&hits<spins){
+/*  if(spins<2*hits&&hits<spins){
         over_half=true;
     } else {
         over_half=false;
     }
-    win_span.innerHTML=over_half;
+    win_span.innerHTML=over_half; */
 
     // -- Winning progress depends on hits/spins
     let hits_spins_ratio = hits/spins;
-
+    
 /*  if ( hits_spins_ratio > 0 ) {
     progress = 'On your way!';
         if ( hits_spins_ratio >= 0.25 ) {
@@ -40,18 +40,16 @@ function changeClassName(element) {
         progress = 'Get going!' ;
     } */
 
-    if ( hits_spins_ratio >= 0.5) {
-        if ( hits < spins ) {
-            progress = 'You win!';
-        }
-    } else if (hits_spins_ratio >= 0.25) {
+    if ( hits_spins_ratio >= 0.5 && hits < spins) {
+        progress = 'You win!';
+    } else if ( hits_spins_ratio >= 0.25 && hits_spins_ratio < 0.5 ) {
         progress = 'Almost there!';
-    } else if (hits_spins_ratio>0){
+    } else if ( hits_spins_ratio > 0 && hits_spins_ratio < 0.25 ) {
         progress = 'On your way!';
     } else {
         progress = 'Get Going!';
     } 
-    win_span.innerHTML=progress;
+    win_span.innerHTML = progress;
 }
 
 function resetClassName(element) {
@@ -65,16 +63,15 @@ function resetClassName(element) {
     hits_span.innerHTML=hits;
     hit_spin_span.innerHTML=Number(hits/spins).toFixed(2);
 
-    if(spins<2*hits&&hits<spins){
+/*  if(spins<2*hits&&hits<spins){
         over_half=true;
     } else {
         over_half=false;
     }
-    win_span.innerHTML=over_half;
+    win_span.innerHTML=over_half; */
 
     // -- Winning progress depends on hits/spins
     let hits_spins_ratio = hits/spins;
-    let progress;
     
 /*  if ( hits_spins_ratio > 0 ) {
     progress = 'On your way!';
@@ -90,16 +87,14 @@ function resetClassName(element) {
          progress = 'Get going!' ;
     } */
     
-    if ( hits_spins_ratio >= 0.5) {
-        if ( hits < spins ) {
-            progress = 'You win!';
-        }
-    } else if (hits_spins_ratio >= 0.25) {
+    if ( hits_spins_ratio >= 0.5 && hits < spins) {
+        progress = 'You win!';
+    } else if ( hits_spins_ratio >= 0.25 && hits_spins_ratio < 0.5 ) {
         progress = 'Almost there!';
-    } else if (hits_spins_ratio>0){
+    } else if ( hits_spins_ratio > 0 && hits_spins_ratio < 0.25 ) {
         progress = 'On your way!';
     } else {
         progress = 'Get Going!';
     } 
-    win_span.innerHTML=progress;
+    win_span.innerHTML = progress;
 }
