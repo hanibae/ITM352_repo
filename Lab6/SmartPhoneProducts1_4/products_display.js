@@ -23,7 +23,7 @@ function changeClassName(element) {
     }
     win_span.innerHTML=over_half; */
 
-    // -- Winning progress depends on hits/spins
+    // Winning progress depends on hits/spins
     let hits_spins_ratio = hits/spins;
     
 /*  if ( hits_spins_ratio > 0 ) {
@@ -70,7 +70,7 @@ function resetClassName(element) {
     }
     win_span.innerHTML=over_half; */
 
-    // -- Winning progress depends on hits/spins
+    // Winning progress depends on hits/spins
     let hits_spins_ratio = hits/spins;
     
 /*  if ( hits_spins_ratio > 0 ) {
