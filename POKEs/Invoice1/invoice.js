@@ -25,7 +25,7 @@ let price5 = 14.25;
 let extended_price5 = quantity5 * price5 ;
 
 // Calculate subtotal
-let subtotal = extended_price1 + extended_price2 + extended_price3 + extended_price4 ;
+let subtotal = extended_price1 + extended_price2 + extended_price3 + extended_price4 + extended_price5 ;
 
 // Calculate sales tax
 let taxRate = 0.0575 ; //5.75%
