@@ -31,8 +31,20 @@ let subtotal = extended_price1 + extended_price2 + extended_price3 + extended_pr
 let taxRate = 0.0575 ; //5.75%
 let taxAmount = taxRate * subtotal ; 
 
+//Calculate shipping
+let shippingCharge = 0; //initializes to zero
+
+if (subtotal < 50) {
+    shippingCharge = 2;
+} else if (subtotal < 100) {
+    shippingCharge = 5;
+} else {
+    shippingCharge = subtotal * 0.05
+}
+
+
 // Calculate total
-let total = subtotal + taxAmount ;
+let total = subtotal + taxAmount + shippingCharge ;
 
 //Populate the table rows using DOM manipulation
 let table = document.getElementById('invoiceTable');
@@ -75,4 +87,5 @@ row.insertCell(3).innerHTML = `$`+`${extended_price5}`;
 //Set the subtotal, tax, and total cells
 document.getElementById('subtotal_cell').innerHTML = '$' + subtotal.toFixed(2);
 document.getElementById('tax_cell').innerHTML = '$' + taxAmount.toFixed(2);
+document.getElementById('shipping_cell').innerHTML = '$' + shippingCharge.toFixed(2);
 document.getElementById('total_cell').innerHTML = '$' + total.toFixed(2);
