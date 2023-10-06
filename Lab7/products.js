@@ -99,7 +99,7 @@ while (productCount <= num_products) {
 //exercise 3.1a
 console.log();
 console.log("exercise 3.1a");
-for (let i=1; eval("typeof name"+i)!='undefined'; i++) {
+for (let i=1; i<=num_products; i++) {
     if (i >= lowerBound && i <= upperBound) {
         console.log(eval('name'+i)+' is sold out!');
     } else {
