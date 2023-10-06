@@ -1,1 +1,1 @@
-require("./products_data.js");
+require("./products.js");
