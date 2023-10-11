@@ -1,0 +1,43 @@
+<!-- invoice.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="invoice.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Receipt</title>
+</head>
+<body>
+    <div class = 'container'>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Extended Price</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceTable">
+                <!-- Product rows will be added dynamically using JavaScript -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Sub-total</td>
+                    <td id="subtotal_cell">$0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Tax @ 5.75%</td>
+                    <td id="tax_cell">$0.00</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td id="total_cell"><strong>$0.00</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script src="invoice.js"></script>
+</body>
+</html>
