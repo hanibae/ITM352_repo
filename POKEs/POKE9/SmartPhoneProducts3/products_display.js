@@ -43,10 +43,10 @@ let product5 = {
     price: 10.00
 };
 
-products = [product1, product2, product3, product4, product5]
+let products = [product1, product2, product3, product4, product5];
 
 
-for (let i=0; products[i] != 'undefined'; i++){
+for (let i=0; i<products.length; i++) {
     document.querySelector('.main').innerHTML += `
     <section class="item" onmouseover="changeClassName(this);" onclick="resetClassName(this);">
         <h2>${products[i].brand}</h2>
