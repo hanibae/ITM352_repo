@@ -1,5 +1,5 @@
-let quantity = [1,3,2,1,1];
-//let quantity = [2, "cat", 1.5, -1.5, 0];
+//let quantity = [1,3,2,1,1];
+let quantity = [2, "cat", 1.5, -1.5, 0];
 
 let itemData = [
     { 
