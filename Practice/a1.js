@@ -1,4 +1,10 @@
-let name = "Hani";
-let age = 22;
+function myDisplayer(display){
+    console.log(display);
+};
 
-console.log(`이름은 ${name}이고 나이는 ${age}살 입니다.`);
+function myCalculator(num1, num2, myCallback) {
+    let sum = num1 + num2;
+    myCallback(sum);
+};
+
+myCalculator(1, 2, myDisplayer);
