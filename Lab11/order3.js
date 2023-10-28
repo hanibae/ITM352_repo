@@ -36,7 +36,7 @@ function updateMessage(textbox) {
 };
 
 function displayPurchase() {
-    let quantity = Number(document.getElementById("qty_textbox").value);
+    let quantity = Number(document.getElementsByName("qty_textbox").value);
 
     let validationResult = validateNonNegInt(quantity);
 
