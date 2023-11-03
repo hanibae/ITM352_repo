@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Smartphone Products</title>
+    <link rel="stylesheet" href="products-style.css">
+</head>
+<body>
+    <header>
+        <p id="name"></p>
+        <h1><span id="top_title"></span></h1>
+    </header>
+
+    <p style="text-align: center; font-weight: bold;">
+        Hits:<span id="hits_span">0</span>
+        Spins:<span id="spins_span">0</span>
+        Hit/Spin:<span id="hit_spin_span">0</span>
+        You win:<span id="win_span">pending...</span>
+    </p>
+
+    <form action="./invoice.html" method="GET">
+        <div>
+            <main class="main">
+    
+            </main>
+        </div>
+        <br>
+        <footer>
+            <input type="submit" value="Purchase" name="purchaseButton" class="purchaseButton">
+            <br>
+        </footer>
+    </form>
+
+
+</body>
+<footer>
+    <span id="bottom_title"></span>
+</footer>
+<script src="./products_display.js"></script>
+</html>
