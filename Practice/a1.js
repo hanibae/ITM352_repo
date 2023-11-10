@@ -1,10 +1,5 @@
-function myDisplayer(display){
-    console.log(display);
-};
+let name = "Hani";
 
-function myCalculator(num1, num2, myCallback) {
-    let sum = num1 + num2;
-    myCallback(sum);
-};
-
-myCalculator(1, 2, myDisplayer);
+export function getName() {
+    return name;
+}

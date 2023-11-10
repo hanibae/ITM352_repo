@@ -1,0 +1,39 @@
+table {
+    background-color: rgba(55, 55, 55, 0.5);
+    color: lightgrey;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+table, td {
+    font-family: 'Open Sans', serif;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    font-size: 16px;
+    font-family: 'Open Sans', serif;
+}
+
+#total_cell {
+    font-weight: bold;
+}
+
+#notice {
+    font-size: 12px;
+    text-align: center;
+}
+
+tfoot tr:first-child td {
+    padding-top: 30px;
+}
+
+
