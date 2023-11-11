@@ -19,8 +19,10 @@
   <title>Your Invoice</title>
 
   <link rel="stylesheet" href="invoice.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 
@@ -83,14 +85,14 @@
   <link href="cover.css" rel="stylesheet">
 </head>
 
-<body class="d-flex h-200 text-center text-bg-dark">
+<body class="d-flex h-500 text-center text-bg-dark">
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
     </symbol>
   </svg> 
 
-  <div class="cover-container d-flex w-500 h-500 p-3 mx-auto flex-column">
+  <div class="cover-container d-flex w-100 h-500 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
         <!--
@@ -107,10 +109,13 @@
     </header>
 
     <main class="px-3">
-
+      
+      <br><br>
       <!--this is the thank you message for purchasing products-->
       <h1>Thank you</h1>
-      <p class="lead">say you'll never ever leave from beside me</p>
+      <p class="lead">and I'm down for you always</p>
+      <br>
+      <hr class="featurette-divider">
 
       <!--this is the invoice table-->
       <div class="container">
@@ -149,20 +154,19 @@
             </tr>
           </tfoot>
         </table>
+        <hr class="featurette-divider">
+        <br>
+        <br>
       </div>
       
     </main>
 
-    <footer class="mt-auto text-white-50">
-      <!--
-      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-      -->
-    </footer>
 
   </div>
 
   <script src="invoice.js"></script>
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
 </html>

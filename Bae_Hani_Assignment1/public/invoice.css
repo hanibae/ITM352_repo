@@ -6,6 +6,7 @@ table {
     margin: 0 auto;
     padding-left: 30px;
     padding-right: 30px;
+    text-align: left;
 }
 
 table, td {
@@ -33,6 +34,10 @@ th {
 }
 
 tfoot tr:first-child td {
+    padding-top: 30px;
+}
+
+tfoot tr:last-child td {
     padding-top: 30px;
 }
 
