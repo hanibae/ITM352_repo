@@ -22,7 +22,7 @@ window.onload = function () {
 
             <h2 class="featurette-heading fw-normal lh-1">${products[i]["title"]}</h2>
             <p class="lead">${products[i]["artist"]}<br>$${(products[i]["price"]).toFixed(2)}<br></p>
-            <p style="font-family: 'Open Sans', serif; font-size: 14px;"><br>we've got ${products[i]["qty_available"]} albums in stock</p>
+            <p style="font-family: 'Open Sans', serif; font-size: 12.5px;"><br>Available: ${products[i]["qty_available"]}<br>Sold: ${products[i]["total_sold"]}</p>
 
             <div class="col-auto">
               <label class="visually-hidden" for="quantity_textbox_${i}">Quantity Desired</label>
