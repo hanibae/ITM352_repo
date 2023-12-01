@@ -116,9 +116,7 @@
       <p class="lead">Are you riding?</p>
       <br>
 
-      <!-- The HTML form with the id "productForm", name "quantity_form", and action set to "./purchase" on form submission.
-      The onsubmit attribute calls the JavaScript function validateForm() to perform form validation before submission.
-      If validateForm() returns false, the form submission is prevented. -->
+      <!-- The HTML form with the id "productForm" and name "quantity_form", submits data to "./purchase" using the POST method on form submission. The onsubmit attribute calls the JavaScript function showAlert() for form validation. If there are validation errors, showAlert() displays an alert. -->
       <form id="productForm" name="quantity_form" action="./purchase" method="POST" onsubmit="showAlert()">
 
         <!--this is where the products and the quantity input textboxes are going to be displayed-->

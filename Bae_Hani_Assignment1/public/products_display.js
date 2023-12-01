@@ -142,8 +142,21 @@ function checkQuantityTextbox(textbox) {
 
 
 
+/*The function showAlert() is responsible for checking quantity inputs before form submission and displaying error messages.
 
+Variables:
+  - errorMessage: Holds any error messages detected during validation.
+  - allZero: Indicates whether all quantity inputs are zero.
 
+Conditions Checked:
+  - Must be a numeric value.
+  - Must not be a negative decimal.
+  - Must not be a negative integer.
+  - Must be an integer.
+  - Must not exceed the available stock for the corresponding product.
+
+If all quantity inputs are zero, an additional error message is added.
+If there are any errors, an alert is displayed with the accumulated error messages.*/
 function showAlert() {
   //no errors in default
   let errorMessage = '';

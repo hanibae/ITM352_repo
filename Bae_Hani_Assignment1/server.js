@@ -43,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 //handle POST requests to the "/purchase" endpoint
 app.post("/purchase", function (request, response) {
 
+  //if there are no validation errors
 	if (validateForm(request) == true) {
 		//iterate over each product in the 'products' array
 		for (i in products) {
@@ -60,6 +61,7 @@ app.post("/purchase", function (request, response) {
 		response.redirect('invoice.html');
 
 	} else {
+    //if there are validation errors, redirect to the "products_display.html" page in order to let the user change their input
 		response.redirect('products_display.html');
 	};
 
@@ -132,11 +134,12 @@ function validateForm(request) {
     if (allZero) {
         errorMessage += '\n'+ `you cannot purchase nothing.`;
     }
-  
-    //if there are errors, display the accumulated error messages in an alert
+
+    //if there is an error, do not allow the form to be submitted
+    //if no errors, allow the form to submit
     if (errorMessage !== '') {
-        return false; //if there is an error, do not allow the form to be submitted
+        return false;
     } else {
-        return true; //if no errors, allow the form to submit
+        return true;
     };
 };
