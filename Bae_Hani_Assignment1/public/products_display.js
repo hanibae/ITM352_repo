@@ -21,8 +21,18 @@ window.onload = function () {
           <div class="col-md-7">
 
             <h2 class="featurette-heading fw-normal lh-1">${products[i]["title"]}</h2>
-            <p class="lead">${products[i]["artist"]}<br>$${(products[i]["price"]).toFixed(2)}<br></p>
-            <p style="font-family: 'Open Sans', serif; font-size: 12.5px;"><br>Available: ${products[i]["qty_available"]}<br>Sold: ${products[i]["total_sold"]}</p>
+            <p class="lead">
+              ${products[i]["artist"]}
+              <br>
+              $${(products[i]["price"]).toFixed(2)}
+              <br>
+              <br>
+            </p>
+            <p style="font-family: 'Open Sans', serif; font-size: 12.5px;">
+              Available: <span id="showInventory_${i}">${products[i]["qty_available"]}</span>
+              <br>
+              Sold: ${products[i]["total_sold"]}</span>
+            </p>
 
             <div class="col-auto">
               <label class="visually-hidden" for="quantity_textbox_${i}">Quantity Desired</label>
@@ -103,18 +113,21 @@ function checkQuantityTextbox(textbox) {
     //check if the input exceeds the available stock for the corresponding product
     else if (input > products[index]["qty_available"]) {
       errorMessage += `We don't have ${input} available<br>Quantity must not exceed the available stock`;
+      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]); //if the input exceeds the available stock, display the original inventory quantity
     } 
     
     //when nothing is entered, or "0" is entered, no message will be displayed
     else if (input == 0) {
       errorMessage = "";
       validMessage = "";
+      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]); //if the input is 0, display the original inventory quantity
     } 
     
     //if no errors, create a valid message indicating the desired quantity for the product
     else {
       errorMessage = "";
       validMessage += `You want ${input} of ${products[index]["title"]}`
+      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]-input); //if no errors, display the inventory quantity reduced by the input value
     };
 
 
