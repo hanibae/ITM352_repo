@@ -29,9 +29,9 @@ window.onload = function () {
               <br>
             </p>
             <p style="font-family: 'Open Sans', serif; font-size: 12.5px;">
-              Available: <span id="showInventory_${i}">${products[i]["qty_available"]}</span>
+              Available: ${products[i]["qty_available"]}
               <br>
-              Sold: ${products[i]["total_sold"]}</span>
+              Sold: ${products[i]["total_sold"]}
             </p>
 
             <div class="col-auto">
@@ -113,21 +113,19 @@ function checkQuantityTextbox(textbox) {
     //check if the input exceeds the available stock for the corresponding product
     else if (input > products[index]["qty_available"]) {
       errorMessage += `We don't have ${input} available<br>Quantity must not exceed the available stock`;
-      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]); //if the input exceeds the available stock, display the original inventory quantity
+      textbox.value = Number(products[index]["qty_available"]); //if the input exceeds the available stock, the value of the input is reverted back to the inventory amount, instead of whatever number the user put in
     } 
     
     //when nothing is entered, or "0" is entered, no message will be displayed
     else if (input == 0) {
       errorMessage = "";
       validMessage = "";
-      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]); //if the input is 0, display the original inventory quantity
     } 
     
     //if no errors, create a valid message indicating the desired quantity for the product
     else {
       errorMessage = "";
       validMessage += `You want ${input} of ${products[index]["title"]}`
-      document.getElementById(`showInventory_${index}`).innerHTML = Number(products[index]["qty_available"]-input); //if no errors, display the inventory quantity reduced by the input value
     };
 
 
