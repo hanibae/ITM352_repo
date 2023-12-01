@@ -1,0 +1,172 @@
+<!--invoice.html-->
+<!--made by Hani Bae-->
+<!--this is the html file that displays the invoice after the user has made a purchase of products-->
+<!--copied and customized the code from bootstrap in order to make the invoice page look fancy-->
+
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+  <script src="assets/js/color-modes.js"></script>
+  <script type="text/javascript" src="./products.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.118.2">
+
+  <title>Your Invoice</title>
+
+  <link rel="stylesheet" href="invoice.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
+  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    } 
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-500 text-center text-bg-dark">
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+  </svg> 
+
+  <div class="cover-container d-flex w-100 h-500 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <!--
+          <h3 class="float-md-start mb-0">Cover</h3>
+        -->
+
+        <!--this is the nav bar-->
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link fw-bold py-1 px-0" href="index.html">Home</a>
+          <a class="nav-link fw-bold py-1 px-0" href="products_display.html">Products</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="px-3">
+      
+      <br><br>
+      <!--this is the thank you message for purchasing products-->
+      <h1>Thank you</h1>
+      <p class="lead">and I'm down for you always</p>
+      <br>
+      <hr class="featurette-divider">
+
+      <!--this is the invoice table-->
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Extended Price</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceTable">
+            <!-- Product rows will be added dynamically using JavaScript -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">Sub-total</td>
+              <td id="subtotal_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3">Tax @ 4.712%</td>
+              <td id="tax_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3">Shipping</td>
+              <td id="shipping_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3"><strong>Total</strong></td>
+              <td id="total_cell"><strong>$0.00</strong></td>
+            </tr>
+            <tr>
+              <!--this specifies to the customer that the shipping charge changes according to the amount of the sub-total-->
+              <td colspan="4" id="notice">Kiki, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
+            </tr>
+          </tfoot>
+        </table>
+        <hr class="featurette-divider">
+        <br>
+        <br>
+      </div>
+      
+    </main>
+
+
+  </div>
+
+  <script src="invoice.js"></script>
+  <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
