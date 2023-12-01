@@ -43,22 +43,100 @@ app.use(express.urlencoded({ extended: true }));
 //handle POST requests to the "/purchase" endpoint
 app.post("/purchase", function (request, response) {
 
-	//iterate over each product in the 'products' array
-	for (i in products) {
+	if (validateForm(request) == true) {
+		//iterate over each product in the 'products' array
+		for (i in products) {
 
-		//retrieve the quantity value from the request body for the current product
-		let qty = Number(request.body[`quantity_textbox_${i}`]);
+			//retrieve the quantity value from the request body for the current product
+			let qty = Number(request.body[`quantity_textbox_${i}`]);
 
-		//update products data:
-		products[i]["total_sold"] += qty; //increment the total sold quantity
-		products[i]["qty_desired"] = qty; //set the desired quantity to the input quantity
-		products[i]["qty_available"] -= qty; //decrease the available quantity by the input quantity
+			//update products data:
+			products[i]["total_sold"] += qty; //increment the total sold quantity
+			products[i]["qty_desired"] = qty; //set the desired quantity to the input quantity
+			products[i]["qty_available"] -= qty; //decrease the available quantity by the input quantity
+		};
+
+		//redirect the response to the "invoice.html" page
+		response.redirect('invoice.html');
+
+	} else {
+		response.redirect('products_display.html');
 	};
 
-	//redirect the response to the "invoice.html" page
-	response.redirect('invoice.html');
 });
 
 
 //start the server; listen on port 8080 for incoming HTTP requests
 app.listen(8080, () => console.log(`listening on port 8080`));
+
+
+/*The function validateForm() is responsible for validating quantity inputs before form submission.
+
+Variables:
+- errorMessage: Holds any error messages detected during validation.
+- allZero: Indicates whether all quantity inputs are zero.
+
+The function iterates over each product, checks various conditions for quantity inputs, and constructs error messages accordingly.
+Conditions are checked for each quantity input to ensure they meet the following criteria:
+  - Must be a numeric value.
+  - Must not be a negative decimal.
+  - Must not be a negative integer.
+  - Must be an integer.
+  - Must not exceed the available stock for the corresponding product.
+If all quantity inputs are zero, an additional error message is added.
+
+If there are any errors, the function returns false.
+If there are no errors, the function returns true.
+*/
+function validateForm(request) {
+
+    //no errors in default
+    let errorMessage = '';
+
+    //quantity inputs are 0 in default
+    let allZero = true;
+
+    //iterate over each product using for loop
+    for (let i in products) {
+
+      //get values from input fields
+	  let num = Number(request.body[`quantity_textbox_${i}`]);
+ 
+      //check conditions
+      switch (true) {
+        case isNaN(num):
+          errorMessage += '\n'+ `you can't purchase a non-numeric quantity for ${products[i]["title"]}`;
+          break;
+        case num < 0 && num % 1 !== 0:
+          errorMessage = '\n'+ `you can't purchase a negative decimal quantity for ${products[i]["title"]}`;
+          break;
+        case num < 0:
+          errorMessage += '\n'+ `you can't purchase a negative quantity for ${products[i]["title"]}`;
+          break;
+        case num % 1 !== 0:
+          errorMessage += '\n'+ `you can't purchase a decimal quantity for ${products[i]["title"]}`;
+          break;
+        case num > (products[i]["qty_available"]):
+          errorMessage += '\n'+ `you can't purchase beyond the available stock for ${products[i]["title"]}`;
+          break;
+      };
+
+      //if any input is not zero, set allZero to false
+      if (num !== 0) {
+        allZero = false;
+      };
+
+    };
+
+    //if all inputs are 0, make an error message
+    if (allZero) {
+        errorMessage += '\n'+ `you cannot purchase nothing.`;
+    }
+  
+    //if there are errors, display the accumulated error messages in an alert
+    if (errorMessage !== '') {
+        return false; //if there is an error, do not allow the form to be submitted
+    } else {
+        return true; //if no errors, allow the form to submit
+    };
+};

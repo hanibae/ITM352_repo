@@ -119,7 +119,7 @@
       <!-- The HTML form with the id "productForm", name "quantity_form", and action set to "./purchase" on form submission.
       The onsubmit attribute calls the JavaScript function validateForm() to perform form validation before submission.
       If validateForm() returns false, the form submission is prevented. -->
-      <form id="productForm" name="quantity_form" action="./purchase" method="POST" onsubmit="showAlert()">
+      <form id="productForm" name="quantity_form" action="./purchase" method="POST" onsubmit="return validateForm()">
 
         <!--this is where the products and the quantity input textboxes are going to be displayed-->
         <!--dynamic product inputs will be inserted here-->

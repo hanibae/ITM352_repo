@@ -1,15 +1,13 @@
-<!--products_display.html-->
+<!--index.html-->
 <!--made by Hani Bae-->
-<!--this is the html file that displays the products-->
-<!--copied and customized the code from bootstrap in order to make the products page look fancy-->
+<!--this is the html file for the home page-->
+<!--copied and customized the code from bootstrap in order to make my home page look fancy-->
 
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
-    
+
 <head>
   <script src="assets/js/color-modes.js"></script>
-  <script type="text/javascript" src="./products.js"></script>
-  <script src="products_display.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,22 +15,18 @@
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.118.2">
 
-  <title>Are you riding?</title>
+  <title>Kiki, do you hear me?</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
+  
   <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
-      -webkit-user-select: none;
+      -webkit-user-select: none; 
       -moz-user-select: none;
       user-select: none;
     }
@@ -82,54 +76,56 @@
     }
   </style>
 
-  <!-- Custom styles for this template -->
   <link href="cover.css" rel="stylesheet">
 </head>
 
-<body class="d-flex h-500 text-center text-bg-dark">
+<body class="d-flex h-100 text-center text-bg-dark">
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
     </symbol>
-  </svg>
-
-  <div class="cover-container d-flex w-100 h-500 p-3 mx-auto flex-column">
+  </svg> 
+  
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
         <!--
           <h3 class="float-md-start mb-0">Cover</h3>
         -->
 
-        <!--this is the nav bar-->
+        <!--displays the nav bar-->
         <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link fw-bold py-1 px-0" href="index.html">Home</a>
-          <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="products_display.html">Products</a>
+          <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="index.html">Home</a>
+          <a class="nav-link fw-bold py-1 px-0" href="products_display.html">Products</a>
         </nav>
 
       </div>
     </header>
-    
+
     <main class="px-3">
-      <!--these are just some decorative wording-->
-      <br><br>
+
+      <!--displays the name of the record store-->
       <h1>Kiki, Do You Hear Me?</h1>
-      <p class="lead">Are you riding?</p>
-      <br>
 
-      <!-- The HTML form with the id "productForm", name "quantity_form", and action set to "./purchase" on form submission.
-      The onsubmit attribute calls the JavaScript function validateForm() to perform form validation before submission.
-      If validateForm() returns false, the form submission is prevented. -->
-      <form id="productForm" name="quantity_form" action="./purchase" method="POST" onsubmit="showAlert()">
+      <!--displays the welcome message-->
+      <p class="lead">Welcome to the record store.<br>Hani's album selections  -  your next music journey.</p>
 
-        <!--this is where the products and the quantity input textboxes are going to be displayed-->
-        <!--dynamic product inputs will be inserted here-->
-
-      </form>
+      <!--the button that leads to the products display page-->
+      <p class="lead">
+        <a href="products_display.html" class="btn btn-lg btn-light fw-bold border-white bg-white">Explore</a>
+      </p>
       
+    </main>
+
+    <footer class="mt-auto text-white-50">
+      <!--
+      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+      -->
+    </footer>
   </div>
+
 </body>
 
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>
