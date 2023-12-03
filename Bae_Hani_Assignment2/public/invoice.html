@@ -106,7 +106,7 @@
       
       <br><br><br><br>
       <!--this is the thank you message for purchasing products-->
-      <h1>Thank you, <span id="helloUser"></span></h1>
+      <h1>Thank you, <span id="thankUsername"></span></h1>
       <p class="lead">and I'm down for you always</p>
       <br>
       <hr class="featurette-divider">
@@ -144,14 +144,12 @@
             </tr>
             <tr>
               <!--this specifies to the customer that the shipping charge changes according to the amount of the sub-total-->
-              <td colspan="4" id="notice">Kiki, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
+              <td colspan="4" id="notice"><span id="shippingUsername">Kiki</span>, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
             </tr>
           </tfoot>
         </table>
         <hr class="featurette-divider">
-        <br>
         <p style="font-family: 'Open Sans', serif; font-size: 12px;">There are <span id="login_user_number"></span> users currently in the Kiki record store</p>
-        <br>
         <div>
           <form name="invoice" method="POST">
             <input class="btn btn-secondary" type="submit" value="Continue Shopping" name="continue" onclick="invoice.action='/continue_shopping'">

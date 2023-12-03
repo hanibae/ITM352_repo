@@ -134,6 +134,10 @@ app.post("/process_login", function(request, response) {
       //temp info should have the stored quantities, user's email & name
       let params = new URLSearchParams(temp_user);
       login_user.push(temp_user["name"]);
+      //add each element of login_user array to the params
+      for (let user of login_user) {
+        params.append('login_user', user);
+      };
       response.redirect(`/invoice.html?valid&${params.toString()}`);
       return;
     }
@@ -190,13 +194,13 @@ app.post("/purchase_logout", function(request, response) {
     };
   });
 
+  //when the user log out, remove the value of temp_user["name"] from the login_user array
+  login_user = login_user.filter(user => user !== temp_user["name"]);
+
   //remove user info from temp_user
   delete temp_user["email"];
   delete temp_user["name"];
-
-  //remove user from login_user
-  login_user = login_user.filter(user => user !== temp_user["name"]);
-
+ 
   //redirect to the "products_display.page" after user logout
   response.redirect("products_display.html");
 });
@@ -240,6 +244,11 @@ app.post("/process_register", function(request, response) {
         let params = new URLSearchParams(temp_user);
 
         login_user.push(temp_user["name"]);
+
+        //add each element of login_user array to the params
+        for (let user of login_user) {
+          params.append('login_user', user);
+        }
 
         //redirect to the "invoice.html" page with success and valid parameters
         response.redirect(`/invoice.html?regSuccess&valid&${params.toString()}`);

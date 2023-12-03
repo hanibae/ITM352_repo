@@ -3,6 +3,7 @@
 
 //get the URL
 let params = (new URL(document.location)).searchParams;
+let urlParams = new URLSearchParams(window.location.search);
 
 window.onload = function() {
     if (!params.has("valid")) {
@@ -13,8 +14,9 @@ window.onload = function() {
             </body>
         `)
     } else {
-        document.getElementById("helloUser").innerHTML = params.get("name");
-        document.getElementById("login_user_number").innerHTML = login_user.length;
+        document.getElementById("thankUsername").innerHTML = params.get("name");
+        document.getElementById("shippingUsername").innerHTML = params.get("name");
+        document.getElementById("login_user_number").innerHTML = urlParams.getAll('login_user').length;
     };
 };
 
