@@ -1,0 +1,170 @@
+{
+  "hiphop": [
+    {
+      "title": "beerbongs & bentleys",
+      "artist": "Post Malone",
+      "price": 28,
+      "image": "./image/beer.jpg",
+      "alt": "album cover of beerbongs & bentleys",
+      "qty_available": 15000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Hollywood's Bleeding",
+      "artist": "Post Malone",
+      "price": 35,
+      "image": "./image/hollywood.jpg",
+      "alt": "album cover of Hollywood's Bleeding",
+      "qty_available": 19000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Stoney",
+      "artist": "Post Malone",
+      "price": 40,
+      "image": "./image/stoney.jpg",
+      "alt": "album cover of Stoney",
+      "qty_available": 18500,
+      "qty_sold": 0
+    },
+    {
+      "title": "More Life",
+      "artist": "Drake",
+      "price": 45,
+      "image": "./image/more.jpg",
+      "alt": "album cover of More Life",
+      "qty_available": 7000,
+      "qty_sold": 0
+    },
+    {
+      "title": "DAMN.",
+      "artist": "Kendrick Lamar",
+      "price": 30,
+      "image": "./image/damn.jpg",
+      "alt": "album cover of DAMN.",
+      "qty_available": 20000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Culture",
+      "artist": "Migos",
+      "price": 149.99,
+      "image": "./image/culture.jpg",
+      "alt": "album cover of Culture",
+      "qty_available": 1000,
+      "qty_sold": 0
+    }
+  ],
+  "others": [
+    {
+      "title": "?",
+      "artist": "XXXTENTACION",
+      "price": 17,
+      "image": "./image/que.jpg",
+      "alt": "album cover of ?",
+      "qty_available": 20000,
+      "qty_sold": 0
+    },
+    {
+      "title": "SOS",
+      "artist": "SZA",
+      "price": 27,
+      "image": "./image/sos.jpg",
+      "alt": "album cover of SOS",
+      "qty_available": 17000,
+      "qty_sold": 0
+    },
+    {
+      "title": "ANTI",
+      "artist": "Rihanna",
+      "price": 32,
+      "image": "./image/anti.jpg",
+      "alt": "album cover of ANTI",
+      "qty_available": 12000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Circles",
+      "artist": "Mac Miller",
+      "price": 31.97,
+      "image": "./image/circles.jpg",
+      "alt": "album cover of Circles",
+      "qty_available": 21000,
+      "qty_sold": 0
+    },
+    {
+      "title": "BEFORE LOVE CAME TO KILL US",
+      "artist": "Jessie Reyez",
+      "price": 50,
+      "image": "./image/bef.jpg",
+      "alt": "album cover of BEFORE LOVE CAME TO KILL US",
+      "qty_available": 5000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Born To Die",
+      "artist": "Lana Del Rey",
+      "price": 27.5,
+      "image": "./image/born.jpg",
+      "alt": "album cover of Born To Die",
+      "qty_available": 11000,
+      "qty_sold": 0
+    }
+  ],
+  "korea": [
+    {
+      "title": "KEUNG",
+      "artist": "C JAMM",
+      "price": 152.34,
+      "image": "./image/keung.jpg",
+      "alt": "album cover of KEUNG",
+      "qty_available": 2000,
+      "qty_sold": 0
+    },
+    {
+      "title": "TEAM BABY",
+      "artist": "The Black Skirts",
+      "price": 144.87,
+      "image": "./image/team.jpg",
+      "alt": "album cover of TEAM BABY",
+      "qty_available": 3000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Myself",
+      "artist": "Shin Hae-chul",
+      "price": 12,
+      "image": "./image/myself.jpg",
+      "alt": "album cover of Myself",
+      "qty_available": 22000,
+      "qty_sold": 0
+    },
+    {
+      "title": "DNSG",
+      "artist": "CHANGMO",
+      "price": 31,
+      "image": "./image/dnsg.jpg",
+      "alt": "album cover of DNSG",
+      "qty_available": 20000,
+      "qty_sold": 0
+    },
+    {
+      "title": "Oboe",
+      "artist": "Yang Hong-won",
+      "price": 160,
+      "image": "./image/oboe.jpg",
+      "alt": "album cover of Oboe",
+      "qty_available": 950,
+      "qty_sold": 0
+    },
+    {
+      "title": "NOWITZKI",
+      "artist": "Beenzino",
+      "price": 9.91,
+      "image": "./image/now.jpg",
+      "alt": "album cover of NOWITZKI",
+      "qty_available": 22000,
+      "qty_sold": 0
+    }
+  ]
+}

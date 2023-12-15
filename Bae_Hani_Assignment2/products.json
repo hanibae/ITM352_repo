@@ -1,1 +1,74 @@
-[{"title":"beerbongs & bentleys","artist":"Post Malone","price":28,"image":"./image/beer.jpg","qty_available":15000,"qty_sold":0},{"title":"?","artist":"XXXTENTACION","price":17,"image":"./image/que.jpg","qty_available":20000,"qty_sold":0},{"title":"SOS","artist":"SZA","price":27,"image":"./image/sos.jpg","qty_available":17000,"qty_sold":0},{"title":"BEFORE LOVE CAME TO KILL US","artist":"Jessie Reyez","price":50,"image":"./image/bef.jpg","qty_available":5000,"qty_sold":0},{"title":"ANTI","artist":"Rihanna","price":32,"image":"./image/anti.jpg","qty_available":12000,"qty_sold":0},{"title":"More Life","artist":"Drake","price":45,"image":"./image/more.jpg","qty_available":7000,"qty_sold":0},{"title":"KEUNG","artist":"C JAMM","price":152.34,"image":"./image/keung.jpg","qty_available":2000,"qty_sold":0},{"title":"TEAM BABY","artist":"The Black Skirts","price":144.87,"image":"./image/team.jpg","qty_available":3000,"qty_sold":0},{"title":"NOWITZKI","artist":"Beenzino","price":9.91,"image":"./image/now.jpg","qty_available":21999,"qty_sold":1}]
+[
+  {
+    "title": "beerbongs & bentleys",
+    "artist": "Post Malone",
+    "price": 28,
+    "image": "./image/beer.jpg",
+    "qty_available": 15000,
+    "qty_sold": 0
+  },
+  {
+    "title": "?",
+    "artist": "XXXTENTACION",
+    "price": 17,
+    "image": "./image/que.jpg",
+    "qty_available": 20000,
+    "qty_sold": 0
+  },
+  {
+    "title": "SOS",
+    "artist": "SZA",
+    "price": 27,
+    "image": "./image/sos.jpg",
+    "qty_available": 17000,
+    "qty_sold": 0
+  },
+  {
+    "title": "BEFORE LOVE CAME TO KILL US",
+    "artist": "Jessie Reyez",
+    "price": 50,
+    "image": "./image/bef.jpg",
+    "qty_available": 5000,
+    "qty_sold": 0
+  },
+  {
+    "title": "ANTI",
+    "artist": "Rihanna",
+    "price": 32,
+    "image": "./image/anti.jpg",
+    "qty_available": 12000,
+    "qty_sold": 0
+  },
+  {
+    "title": "More Life",
+    "artist": "Drake",
+    "price": 45,
+    "image": "./image/more.jpg",
+    "qty_available": 7000,
+    "qty_sold": 0
+  },
+  {
+    "title": "KEUNG",
+    "artist": "C JAMM",
+    "price": 152.34,
+    "image": "./image/keung.jpg",
+    "qty_available": 2000,
+    "qty_sold": 0
+  },
+  {
+    "title": "TEAM BABY",
+    "artist": "The Black Skirts",
+    "price": 144.87,
+    "image": "./image/team.jpg",
+    "qty_available": 3000,
+    "qty_sold": 0
+  },
+  {
+    "title": "NOWITZKI",
+    "artist": "Beenzino",
+    "price": 9.91,
+    "image": "./image/now.jpg",
+    "qty_available": 22000,
+    "qty_sold": 0
+  }
+]

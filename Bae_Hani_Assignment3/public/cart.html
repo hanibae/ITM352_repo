@@ -1,0 +1,126 @@
+<!--cart.html-->
+<!--made by Hani Bae-->
+<!--this is the html file for the cart page-->
+<!--copied and customized the code from bootstrap to make my cart page look fancy-->
+
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kiki's Shopping Cart</title>
+  
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <!--javascript to load shopping cart-->
+  <script src="cart.js"></script>
+
+  <!--loading navbar links-->
+  <script type="text/javascript" src="functions.js"></script>
+  <script type="text/javascript" src="navbar.js"></script>
+
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css">
+
+  <!--using google fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+
+  <!--using fontawesome icons-->
+  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
+
+  <!--css file for invoice table-->
+  <link rel="stylesheet" href="invoice.css">
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+  <!--code from bootstrap-->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+  </svg> 
+  
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    
+    <!--displays the nav bar-->
+    <header class="mb-auto">
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0" href="index.html"><i class="fa-solid fa-house"></i> home</a>
+        <a class="nav-link fw-bold py-1 px-0"></a>
+        <script>nav_bar(products_key, products)</script>
+        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> <span id="cart_total"></span> cart</a>
+        <a class="nav-link fw-bold py-1 px-0"></a>
+        <div id="login_logout_button">
+          <a class="nav-link fw-bold py-1 px-0" href="login.html"><i class="fa-solid fa-user"></i> login</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="px-3">
+      <br><br>
+
+      <!--displays the welcome message-->
+      <h1>Your Cart</h1><br>
+      <hr class="featurette-divider">
+
+      <!--this is the invoice table-->
+      <div id="cart_container">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Extended Price</th>
+            </tr>
+          </thead>
+          <tbody id="cartTable">
+            <!-- Product rows will be added dynamically using JavaScript -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">Sub-total</td>
+              <td id="subtotal_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3">Tax @ 4.712%</td>
+              <td id="tax_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3">Shipping</td>
+              <td id="shipping_cell">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3"><strong>Total</strong></td>
+              <td id="total_cell"><strong>$0.00</strong></td>
+            </tr>
+            <tr>
+              <!--this specifies to the customer that the shipping charge changes according to the amount of the sub-total-->
+              <td colspan="4" id="notice"><span id="shippingUsername">Kiki</span>, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
+            </tr>
+          </tfoot>
+        </table>
+      
+        <hr class="featurette-divider">
+        
+        <form action="/update_shopping_cart" method="POST">
+          <input type="submit" id="cartUpdate" value="Update Cart" class="btn btn-secondary">
+        </form><br>
+
+        <form action="/checkout" method="GET">
+          <input type="submit" id="cartSubmit" value="Check Out" class="btn btn-secondary">
+        </form>
+      </div>
+      
+    </main>
+
+    <footer class="mt-auto text-white-50"></footer>
+  </div>
+
+</body>
+</html>

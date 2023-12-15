@@ -1,0 +1,81 @@
+<!--register.html-->
+<!--made by Hani Bae-->
+<!--this is the html file for the register page-->
+<!--copied and customized the code from bootstrap in order to make my register page look fancy-->
+
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+  <script src="register.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kiki Register</title>
+
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css">
+
+  <!--using google fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+  <!--code from bootstrap-->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+  </svg> 
+  
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <main class="px-3">
+
+      <h1>Kiki Record Store</h1>
+      <p class="lead">Be Our Kiki</p>
+      <br>
+
+      <form action="process_register" method="POST" name="register_form">
+        <div class="d-grid gap-2 col-6 mx-auto">
+
+            <label class="visually-hidden" for="name">Name</label>
+            <input type="text" class="btn btn-outline-secondary" name="name" id="name" placeholder="Name" oninput="checkName(this)">
+            <span id="name_error" style="font-family: 'Open Sans', serif; font-size: 12px;"></span>
+            
+            <label class="visually-hidden" for="email">Email</label>
+            <input type="text" class="btn btn-outline-secondary" name="email" id="email" placeholder="Email" oninput="checkEmail(this)">
+            <span id="email_error" style="font-family: 'Open Sans', serif; font-size: 12px;"></span>
+            
+
+            <label class="visually-hidden" for="password">Password</label>
+            <input type="password" class="btn btn-outline-secondary" name="password" id="password" placeholder="Password" oninput="checkPassword(this); checkConfirmPassword();">
+            <span id="password_error" style="font-family: 'Open Sans', serif; font-size: 12px;"></span>
+            
+            
+            <label class="visually-hidden" for="confirm_password">Confirm Password</label>
+            <input type="password" class="btn btn-outline-secondary" name="confirm_password" id="confirm_password" placeholder="Confirm Password" oninput="checkConfirmPassword()">
+            <span id="confirm_password_error" style="font-family: 'Open Sans', serif; font-size: 12px;"></span>
+            
+            <br>
+        </div>
+
+        <input type="submit" class="btn btn-secondary" value="Register" onsubmit="registerAlert()">
+        <br><br>
+
+        <p style="font-family: 'Open Sans', serif; font-size: 15px;">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+      </form>  
+    </main>
+
+    <footer class="mt-auto text-white-50"></footer>
+  </div>
+
+</body>
+</html>

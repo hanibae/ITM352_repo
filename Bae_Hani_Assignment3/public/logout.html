@@ -1,0 +1,72 @@
+<!--logout.html-->
+<!--made by Hani Bae-->
+<!--this is the html file for the logout page-->
+<!--copied and customized the code from bootstrap to make my logout page look fancy-->
+
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kiki, do you hear me?</title>
+  
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <!--loading navbar links-->
+  <script type="text/javascript" src="functions.js"></script>
+  <script type="text/javascript" src="navbar.js"></script>
+
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css">
+
+  <!--using fontawesome icons-->
+  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+  <!--code from bootstrap-->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+  </svg> 
+  
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    
+    <!--displays the nav bar-->
+    <header class="mb-auto">
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0" href="index.html"><i class="fa-solid fa-house"></i> home</a>
+        <a class="nav-link fw-bold py-1 px-0"></a>
+        <script>nav_bar(products_key, products)</script>
+        <a class="nav-link fw-bold py-1 px-0" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> <span id="cart_total"></span> cart</a>
+        <a class="nav-link fw-bold py-1 px-0"></a>
+        <div id="login_logout_button">
+          <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="login.html"><i class="fa-solid fa-user"></i> login</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="px-3">
+      <h1>Kiki, Are You Sure You Wanna Leave?</h1>
+      <br>
+      <br>
+      <form name="invoice" method="POST">
+        <input class="btn btn-secondary" type="submit" value="Continue Shopping" name="continue" onclick="invoice.action='/continue'">
+        <input class="btn btn-secondary" type="submit" value="Logout" name="logout" onclick="invoice.action='/process_logout'">
+      </form>
+    </main>
+
+    <footer class="mt-auto text-white-50"></footer>
+  </div>
+
+<!--javascript to load shopping cart-->
+<script src="cart.js"></script>
+
+</body>
+</html>
