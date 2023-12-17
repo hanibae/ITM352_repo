@@ -7,30 +7,30 @@
 <html lang="en" class="h-100" data-bs-theme="auto">
     
 <head>
-  <!--loading products information-->
-  <script src="./products.js"></script>
-
-  <!--loading nav bar links-->
-  <script type="text/javascript" src="functions.js"></script>
-  <script type="text/javascript" src="navbar.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Are you riding?</title>
 
-  <!--using bootstrap-->
-  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="cover.css">
-
   <!--using google fonts-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
 
   <!--using fontawesome icons-->
   <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
+
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css">
 </head>
 
 <body class="d-flex h-500 text-center text-bg-dark">
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <!--loading nav bar links-->
+  <script src="functions.js"></script>
+  <script src="navbar.js"></script>
 
   <!--code from bootstrap-->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -62,7 +62,7 @@
       <p class="lead">Are you riding?</p>
       <br>
 
-      <form id="quantity_form" name="quantity_form" action="/add_to_cart" method="POST" onsubmit="updateCartTotal(); showAlert();">
+      <form id="quantity_form" name="quantity_form" action="/add_to_cart" method="POST" onsubmit="showAlert();">
         <script>
           //storing the products_key to be used on the server
           document.write(`<input type="hidden" name="products_key" value="${products_key}">`);
@@ -73,12 +73,10 @@
         <input type="submit" class="btn btn-secondary" value="Add to cart">
       </form>
       <br>
-      
+    </main>  
   </div>
-
-<!--javascript to load product cards and shopping cart-->
-<script src="products_display.js"></script>
-<script src="cart.js"></script>
-
+  <!--javascript to load product cards and shopping cart-->
+  <script src="products_display.js"></script>
+  <script src="cart.js"></script>
 </body>
 </html>

@@ -7,27 +7,27 @@
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Kiki, do you hear me?</title>
-  
-  <!--loading products information-->
-  <script src="./products.js"></script>
 
-  <!--loading navbar links-->
-  <script type="text/javascript" src="functions.js"></script>
-  <script type="text/javascript" src="navbar.js"></script>
+  <!--using fontawesome icons-->
+  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
 
   <!--using bootstrap-->
   <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="cover.css">
-
-  <!--using fontawesome icons-->
-  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="d-flex h-100 text-center text-bg-dark">
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <!--loading navbar links-->
+  <script src="functions.js"></script>
+  <script src="navbar.js"></script>
 
   <!--code from bootstrap-->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -56,17 +56,18 @@
       <h1>Kiki, Are You Sure You Wanna Leave?</h1>
       <br>
       <br>
-      <form name="invoice" method="POST">
-        <input class="btn btn-secondary" type="submit" value="Continue Shopping" name="continue" onclick="invoice.action='/continue'">
-        <input class="btn btn-secondary" type="submit" value="Logout" name="logout" onclick="invoice.action='/process_logout'">
+      <form name="logoutForm" method="POST">
+        <input class="btn btn-secondary" type="submit" value="Continue Shopping" name="continueShopping" onclick="logoutForm.action='/continue'">
+        <input class="btn btn-secondary" type="submit" value="Logout" name="logoutAction" id="logoutAction" onclick="logoutForm.action='/process_logout'">
       </form>
     </main>
 
     <footer class="mt-auto text-white-50"></footer>
   </div>
 
-<!--javascript to load shopping cart-->
-<script src="cart.js"></script>
-
 </body>
+
+<!--javascript to load shopping cart-->
+<script src="logout.js"></script>
+<script src="cart.js"></script>
 </html>

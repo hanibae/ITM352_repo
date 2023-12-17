@@ -11,20 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Kiki's Shopping Cart</title>
-  
-  <!--loading products information-->
-  <script src="./products.js"></script>
-
-  <!--javascript to load shopping cart-->
-  <script src="cart.js"></script>
-
-  <!--loading navbar links-->
-  <script type="text/javascript" src="functions.js"></script>
-  <script type="text/javascript" src="navbar.js"></script>
-
-  <!--using bootstrap-->
-  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="cover.css">
 
   <!--using google fonts-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
@@ -32,11 +18,21 @@
   <!--using fontawesome icons-->
   <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
 
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css"> 
+
   <!--css file for invoice table-->
   <link rel="stylesheet" href="invoice.css">
 </head>
 
 <body class="d-flex h-100 text-center text-bg-dark">
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <!--loading navbar links-->
+  <script src="functions.js"></script>
+  <script src="navbar.js"></script>
 
   <!--code from bootstrap-->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -70,45 +66,45 @@
 
       <!--this is the invoice table-->
       <div id="cart_container">
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Extended Price</th>
-            </tr>
-          </thead>
-          <tbody id="cartTable">
-            <!-- Product rows will be added dynamically using JavaScript -->
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3">Sub-total</td>
-              <td id="subtotal_cell">$0.00</td>
-            </tr>
-            <tr>
-              <td colspan="3">Tax @ 4.712%</td>
-              <td id="tax_cell">$0.00</td>
-            </tr>
-            <tr>
-              <td colspan="3">Shipping</td>
-              <td id="shipping_cell">$0.00</td>
-            </tr>
-            <tr>
-              <td colspan="3"><strong>Total</strong></td>
-              <td id="total_cell"><strong>$0.00</strong></td>
-            </tr>
-            <tr>
-              <!--this specifies to the customer that the shipping charge changes according to the amount of the sub-total-->
-              <td colspan="4" id="notice"><span id="shippingUsername">Kiki</span>, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
-            </tr>
-          </tfoot>
-        </table>
-      
-        <hr class="featurette-divider">
         
-        <form action="/update_shopping_cart" method="POST">
+        <form id="updateCartForm" action="/update_shopping_cart" method="POST">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Extended Price</th>
+              </tr>
+            </thead>
+            <tbody id="cartTable" name="cartTable">
+              <!-- Product rows will be added dynamically using JavaScript -->
+            </tbody>
+            <tfoot id="infoTable">
+              <tr>
+                <td colspan="3">Sub-total</td>
+                <td id="subtotal_cell">$0.00</td>
+              </tr>
+              <tr>
+                  <td colspan="3">Tax @ 4.712%</td>
+                  <td id="tax_cell">$0.00</td>
+              </tr>
+              <tr>
+                  <td colspan="3">Shipping</td>
+                  <td id="shipping_cell">$0.00</td>
+              </tr>
+              <tr>
+                  <td colspan="3"><strong>Total</strong></td>
+                  <td id="total_cell"><strong>$0.00</strong></td>
+              </tr>
+              <tr>
+                  <!--this specifies to the customer that the shipping charge changes according to the amount of the sub-total-->
+                  <td colspan="4" id="notice"><span id="shippingUsername">Kiki</span>, our standard shipping rate is $10<br>For orders over $50, enjoy a reduced shipping rate of $5</td>
+              </tr>
+            </tfoot>
+          </table>
+        
+          <hr class="featurette-divider">
           <input type="submit" id="cartUpdate" value="Update Cart" class="btn btn-secondary">
         </form><br>
 
@@ -123,4 +119,7 @@
   </div>
 
 </body>
+
+<!--loading shopping cart-->
+<script src="cart.js"></script>
 </html>

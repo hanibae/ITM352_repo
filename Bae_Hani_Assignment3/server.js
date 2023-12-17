@@ -23,6 +23,11 @@ const cookieParser = require('cookie-parser');
 const {request} = require('http');
 app.use(cookieParser());
 
+//file system, querystring, and crypto modules for handling data and encryption
+const fs = require ('fs');
+const qs = require('qs');
+const crypto = require ('crypto');
+
 //monitor all requests regardless of their method (GET, POST, PUT, etc) and their path (URL)
 app.all('*', function (request, response, next) {
 	console.log(request.method + ' to ' + request.path);
@@ -31,12 +36,12 @@ app.all('*', function (request, response, next) {
   //this is used to store the quantities information
   if (typeof request.session.cart == 'undefined') {
     request.session.cart = {};
-  };
+  }
   
   //make a session users at any request to store the number of users that are online
   if (typeof request.session.users == 'undefined') {
     request.session.users = Object.keys(status).length;
-  };
+  }
 
 	next();
 
@@ -69,11 +74,6 @@ app.get('/products.js', function(request, response, next) {
 
 //enable parsing of URL-encoded data with extended options
 app.use(express.urlencoded({ extended: true }));
-
-//file system, querystring, and crypto modules for handling data and encryption
-const fs = require ('fs');
-const qs = require('qs');
-const crypto = require ('crypto');
 
 //sets dummy variable filename for user_data.json
 const filename = 'user_data.json';
@@ -126,7 +126,7 @@ app.post("/process_login", function(request, response) {
 
       //keep the track of login users
       if (user_data[entered_email].status == false) {
-        user_data[entered_email].status == true;
+        user_data[entered_email].status = true;
         //add the user to the status object to keep track of logged in users
         status[entered_email] = true;
       };
@@ -143,9 +143,10 @@ app.post("/process_login", function(request, response) {
       console.log(`Current users: ${Object.keys(status).length} - ${Object.keys(status)}`);
 
       //asynchronously write the updated user_data(change in status) and products to their respective files
-      fs.writeFile(__dirname + filename, JSON.stringfity(user_data), 'utf-8', (err) => {
+      fs.writeFile(__dirname + filename, JSON.stringify(user_data), 'utf-8', (err) => {
         if (err) throw err;
         console.log("User data has been updated!");
+        console.log(user_data);
       });
 
       //redirect to "cart.html" page
@@ -205,6 +206,15 @@ app.post("/process_register", function(request, response) {
       "status": true
     };
 
+    //store the user's email and name in the cookie
+    let user_cookie = {"email": reg_email, "name": reg_name};
+
+    //response with the user's cookie as a JSON string and set expiration to 15 minutes
+    response.cookie("user_cookie", JSON.stringify(user_cookie), {maxAge: 900 * 1000});
+    console.log(user_cookie);
+
+
+
     //asynchronously write the updated user_data and products to their respective files
     fs.writeFile(__dirname + '/user_data.json', JSON.stringify(user_data), 'utf-8', (err) => {
       if (err) {
@@ -214,7 +224,11 @@ app.post("/process_register", function(request, response) {
 
         status[reg_email] = true;
 
-        response.redirect(`/login.html`);
+        //update the number of active users
+        request.session.users = Object.keys(status).length;
+        console.log(`Current users: ${Object.keys(status).length} - ${Object.keys(status)}`);
+
+        response.redirect(`/index.html`);
       };
     });
   } 
@@ -242,54 +256,35 @@ app.post("/add_to_cart", function(request, response) {
   //get the products_key from the hidden input box
   let products_key = POST['products_key'];
 
+  //retrieve the user's quantity inputs
+  let user_qty = [];
   for (let i in products[products_key]) {
-    //retrieve the user's quantity inputs
-    let qty = POST[`quantity_textbox_${i}`];
+    user_qty.push(Number(POST[`quantity_textbox_${i}`]));
+  }
 
-    //if there are no errors
-    if (validateForm(request) == true) {
-      //if the session cart does not exist
-      if (!request.session.cart) {
-        //create one
-        request.session.cart = {};
-      }
+  //validate the form
+  if (validateForm(request)) {
+    //if the session cart does not exist, create one
+    request.session.cart = request.session.cart || {};
 
-      //if the session cart array for a product category does not exist
-      if (typeof request.session.cart[products_key] == 'undefined') {
-        //create one
-        request.session.cart[products_key] = {};
-      }
+    //if the session cart array for a product category does not exist, create one
+    request.session.cart[products_key] = user_qty;
 
-      //make an array to store the quantities the users input
-      let user_qty = [];
+    return response.redirect(`/products_display.html?products_key=${POST['products_key']}`);
+  }
 
-      for (let i in products[products_key]) {
-        //push the user's inputs into the array
-        user_qty.push(Number(POST[`quantity_textbox_${i}`]));
-      }
-
-      //set the user_qty in the session
-      request.session.cart[products_key] = user_qty;
-
-      return response.redirect(`/products_display.html?products_key=${POST['products_key']}`);
-    } 
-    
-    //if there is an error, redirect to the "products_display.html" page in order to let the user change their input
-    else {
-      return response.redirect('/products_display.html?error');
-    }
-  };
+  //if there is an error, redirect to the "products_display.html" page with an error parameter
+  return response.redirect('/products_display.html?error');
 });
 
 //handle POST request to the path /update_shopping_cart
 app.post("/update_shopping_cart", function(request, response) {
   let POST = request.body;
-
   let products_key = POST['products_key'];
 
   for (products_key in request.session.cart) {
     for (let i in request.session.cart[products_key]) {
-      request.session.cart[products_key][i] = Number(request.body[`cartInput_${products_key}${i}`]);
+      request.session.cart[products_key][i] = Number(POST[`cartInput_${products_key}${i}`]);
     }
   }
 
@@ -302,7 +297,7 @@ app.post("/continue", function(request, response) {
 });
 
 //handle GET request to the path /checkout
-app.post("/checkout", function(request, response) {
+app.get("/checkout", function(request, response) {
   if (typeof request.cookies['user_cookie'] == 'undefined') {
     response.redirect(`/login.html?`);
   } else {
@@ -371,7 +366,7 @@ app.post("/complete_purchase", function(request, response) {
         subtotal += extended_price;
         invoice_str += `
         <tr>
-          <td>${products[products_key][i].name}</td>
+          <td>${products[products_key][i].title}</td>
           <td>${qty}</td>
           <td>${products[products_key][i].price.toFixed(2)}</td>
           <td>${extended_price}</td>
@@ -419,7 +414,7 @@ app.post("/complete_purchase", function(request, response) {
   //clear cart
   request.session.destroy();
 
-  request.send(invoice_str);
+  response.send(invoice_str);
 });
 
 //handle POST request to the path /process_logout
@@ -484,12 +479,15 @@ function validateForm(request) {
   //no errors in default
   let errorMessage = '';
 
+  //quantity inputs are 0 in default
+  let allZero = true;
+
   let products_key = request.body['products_key'];
 
   //iterate over each product using for loop
   for (let i in products[products_key]) {
 
-  //get values from input fields
+    //get values from input fields
   let num = Number(request.body[`quantity_textbox_${i}`]);
 
     //check conditions
@@ -510,7 +508,18 @@ function validateForm(request) {
         errorMessage += '\n'+ `you can't purchase beyond the available stock for ${products[products_key][i]["title"]}`;
         break;
     };
+
+    //if any input is not zero, set allZero to false
+    if (num !== 0) {
+      allZero = false;
+    };
+
   };
+
+  //if all inputs are 0, make an error message
+  if (allZero) {
+      errorMessage += '\n'+ `you cannot purchase nothing.`;
+  }
 
   //if there is an error, do not allow the form to be submitted
   //if no errors, allow the form to submit

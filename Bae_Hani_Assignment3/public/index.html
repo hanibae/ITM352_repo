@@ -12,23 +12,25 @@
 
   <title>Kiki, do you hear me?</title>
   
+  <!--using fontawesome icons-->
+  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
+
+  <!--using bootstrap-->
+  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="cover.css"> 
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
   <!--loading products information-->
   <script src="./products.js"></script>
 
   <!--loading navbar links-->
-  <script type="text/javascript" src="functions.js"></script>
-  <script type="text/javascript" src="navbar.js"></script>
+  <script src="functions.js"></script>
+  <script src="navbar.js"></script>
 
-  <!--using bootstrap-->
-  <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="cover.css">
-
-  <!--using fontawesome icons-->
-  <script src="https://kit.fontawesome.com/5b68ea7e84.js" crossorigin="anonymous"></script>
-</head>
-
-<body class="d-flex h-100 text-center text-bg-dark">
-
+  <!--loading shopping cart-->
+  <script src="cart.js"></script>
+  
   <!--code from bootstrap-->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
@@ -54,15 +56,23 @@
 
     <main class="px-3">
       <!--displays the welcome message-->
-      <h1>Kiki, Do You Hear Me?</h1>
+      <h1><span id="helloUser">Kiki</span>, Do You Hear Me?</h1>
       <p class="lead">Welcome to the record store.<br>Hani's album selections  -  your next music journey.</p>
     </main>
 
+    <script>
+      //if no user_cookie is detected, send the user to the login page
+      if (getCookie("user_cookie") != false) {
+          user_cookie = getCookie("user_cookie");
+      }
+
+      if (typeof user_cookie !== 'undefined') {
+          document.getElementById('helloUser').innerHTML = user_cookie["name"];
+      }
+    </script>
+
     <footer class="mt-auto text-white-50"></footer>
   </div>
-
-<!--javascript to load shopping cart-->
-<script src="cart.js"></script>
 
 </body>
 </html>

@@ -7,26 +7,29 @@
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
-  <!--loading products information-->
-  <script src="./products.js"></script>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Your Invoice</title>
 
+  <!--using google fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+
   <!--using bootstrap-->
   <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="cover.css">
-
-  <!--using google fonts-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
 
   <!--css file for invoice table-->
   <link rel="stylesheet" href="invoice.css">
 </head>
 
 <body class="d-flex h-500 text-center text-bg-dark">
+
+  <!--loading products information-->
+  <script src="./products.js"></script>
+
+  <script src="functions.js"></script>
+  <script src="navbar.js"></script>
 
   <!--code from bootstrap-->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -43,7 +46,10 @@
 
       <!--this is the thank you message for purchasing products-->
       <h1>Thank you, <span id="thankUsername"></span></h1>
-      <p class="lead">and I'm down for you always</p><br>
+      <p style="font-family: 'Open Sans', serif; font-size: 12px;"><br>Please verify that the information shown below is correct.<br><br>
+      Name: <span id="verifyUsername"></span><br>
+      Email: <span id="verifyEmail"></span>
+      </p>
       <hr class="featurette-divider">
 
       <!--this is the invoice table-->
@@ -87,9 +93,9 @@
         <hr class="featurette-divider">
 
         <div>
-          <form name="invoice" method="POST">
+          <form id="invoice" method="POST">
             <input class="btn btn-secondary" type="submit" value="Continue Shopping" name="continue" onclick="invoice.action='/continue'">
-            <input class="btn btn-secondary" type="submit" value="Logout" name="logout" onclick="invoice.action='/complete_purchase'">
+            <input class="btn btn-secondary" type="submit" value="Complete Purchase" name="complete_purchase" onclick="invoice.action='/complete_purchase'">
           </form>
         </div><br>
       </div>

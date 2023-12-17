@@ -1,6 +1,7 @@
 //products_display.js
 //made by Hani Bae
 
+
 //print product cards
 for (let i in products[products_key]) {
   document.querySelector('.row').innerHTML += `
@@ -23,13 +24,8 @@ for (let i in products[products_key]) {
       </p>
 
       <div class="col-auto">
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <button class="btn btn-secondary" onclick="decreaseQuantity('quantity_textbox_${i}')">-</button>
-          <label class="visually-hidden" for="quantity_textbox_${i}">Quantity Desired</label>
-          <input style="outline: none; box-shadow: none;" type="text" class="btn btn-outline-secondary" name="quantity_textbox_${i}" id="quantity_textbox_${i}" placeholder="Quantity Desired" onkeyup="checkQuantityTextbox(this);">
-          <button class="btn btn-secondary" onclick="increaseQuantity('quantity_textbox_${i}')">+</button>
-        </div>
-        <br>
+        <label class="visually-hidden" for="quantity_textbox_${i}">Quantity Desired</label>
+        <input type="text" class="btn btn-outline-secondary" name="quantity_textbox_${i}" id="quantity_textbox_${i}" placeholder="Quantity Desired" onkeyup="checkQuantityTextbox(this);"><br>
         <span id="quantity_textbox_${i}_message" style="font-family: 'Open Sans', serif; font-size: 12px;"></span><br>
       </div>
 
@@ -43,9 +39,18 @@ for (let i in products[products_key]) {
   `;
 }
 
+//if no user_cookie is detected, send the user to the login page
+if (getCookie("user_cookie") != false) {
+  user_cookie = getCookie("user_cookie");
+}
+
 window.onload = function () {
   //get the URL
   let params = (new URL(document.location)).searchParams;
+
+  if (typeof user_cookie !== 'undefined') {
+    document.getElementById('helloUser').innerHTML = user_cookie["name"];
+  }
 
   //STICKY PART
   //make input boxes sticky (for valid quantities) after returning from the cart
@@ -77,75 +82,75 @@ The function then updates the HTML elements with error messages or valid message
 It also adjusts the styling of the associated button based on the validation results.*/
 function checkQuantityTextbox(textbox) {
 
-    //convert the input value to a number
-    let input = Number(textbox.value)
+  //convert the input value to a number
+  let input = Number(textbox.value)
 
-    //extract the index from the name attribute of the textbox
-    let index = textbox.name[textbox.name.length - 1]
+  //extract the index from the name attribute of the textbox
+  let index = textbox.name[textbox.name.length - 1]
 
-    //initialize variables for error message and valid message
-    let errorMessage = "";
-    let validMessage = "";
+  //initialize variables for error message and valid message
+  let errorMessage = "";
+  let validMessage = "";
 
-    //check if the input is not a numeric value
-    if (isNaN(input)) {
-      errorMessage += `Quantity must be numeric`;
-    } 
-    
-    //check if the input is a negative non-integer
-    else if (input < 0 && input % 1 !== 0) {
-      errorMessage += `Quantity must be a non-negative integer`;
-    } 
-    
-    //check if the input is a negative value
-    else if (input < 0) {
-      errorMessage += `Quantity must be non-negative`;
-    } 
-    
-    //check if the input is not an integer
-    else if (input % 1 !== 0) {
-      errorMessage += `Quantity must be an integer`;
-    } 
-    
-    //check if the input exceeds the available stock for the corresponding product
-    else if (input > products[products_key][index]["qty_available"]) {
-      errorMessage += `We don't have ${input} available<br>Quantity must not exceed the available stock`;
-      textbox.value = Number(products[products_key][index]["qty_available"]); //if the input exceeds the available stock, the value of the input is reverted back to the inventory amount, instead of whatever number the user put in
-    } 
-    
-    //when nothing is entered, or "0" is entered, no message will be displayed
-    else if (input == 0) {
-      errorMessage = "";
-      validMessage = "";
-    } 
-    
-    //if no errors, create a valid message indicating the desired quantity for the product
-    else {
-      errorMessage = "";
-      validMessage += `You want ${input} of ${products[products_key][index]["title"]}`
-    };
-
-
-
-  // Update HTML elements with error messages or valid messages and adjust button styling
-    
-    //if errors exist, set the inner HTML of the associated message element to display the error message
-    if (errorMessage != 0) {
-      document.getElementById(textbox.name + '_message').innerHTML = errorMessage;
-
-      //indicate an error state by changing the button's color to red
-      //due to bootstrap, change the button's class in order to change the button's color to red
-      document.getElementById(textbox.name).className = "btn btn-outline-danger";
+  //check if the input is not a numeric value
+  if (isNaN(input)) {
+    errorMessage += `Quantity must be numeric`;
+  } 
+  
+  //check if the input is a negative non-integer
+  else if (input < 0 && input % 1 !== 0) {
+    errorMessage += `Quantity must be a non-negative integer`;
+  } 
+  
+  //check if the input is a negative value
+  else if (input < 0) {
+    errorMessage += `Quantity must be non-negative`;
+  } 
+  
+  //check if the input is not an integer
+  else if (input % 1 !== 0) {
+    errorMessage += `Quantity must be an integer`;
+  } 
+  
+  //check if the input exceeds the available stock for the corresponding product
+  else if (input > products[products_key][index]["qty_available"]) {
+    errorMessage += `We don't have ${input} available<br>Quantity must not exceed the available stock`;
+    textbox.value = Number(products[products_key][index]["qty_available"]); //if the input exceeds the available stock, the value of the input is reverted back to the inventory amount, instead of whatever number the user put in
+  } 
+  
+  //when nothing is entered, or "0" is entered, no message will be displayed
+  else if (input == 0) {
+    errorMessage = "";
+    validMessage = "";
+  } 
+  
+  //if no errors, create a valid message indicating the desired quantity for the product
+  else {
+    errorMessage = "";
+    validMessage += `You want ${input} of ${products[products_key][index]["title"]}`
+  };
 
 
-    //if no errors, set the inner HTML of the associated message element to display the valid message
-    } else {
-      document.getElementById(textbox.name + '_message').innerHTML = validMessage;
 
-      //indicate a valid state by changing the button's color back to normal
-      //due to bootstrap, change the button's class in order to change the button's color back to normal
-      document.getElementById(textbox.name).className = "btn btn-outline-secondary";
-    };
+// Update HTML elements with error messages or valid messages and adjust button styling
+  
+  //if errors exist, set the inner HTML of the associated message element to display the error message
+  if (errorMessage != 0) {
+    document.getElementById(textbox.name + '_message').innerHTML = errorMessage;
+
+    //indicate an error state by changing the button's color to red
+    //due to bootstrap, change the button's class in order to change the button's color to red
+    document.getElementById(textbox.name).className = "btn btn-outline-danger";
+
+
+  //if no errors, set the inner HTML of the associated message element to display the valid message
+  } else {
+    document.getElementById(textbox.name + '_message').innerHTML = validMessage;
+
+    //indicate a valid state by changing the button's color back to normal
+    //due to bootstrap, change the button's class in order to change the button's color back to normal
+    document.getElementById(textbox.name).className = "btn btn-outline-secondary";
+  };
 };
 
 /*The function showAlert() is responsible for checking quantity inputs before form submission and displaying error messages.
@@ -167,6 +172,9 @@ function showAlert() {
   //no errors in default
   let errorMessage = '';
 
+  //quantity inputs are 0 in default
+  let allZero = true;
+
   //iterate over each product using for loop
   for (let i in products[products_key]) {
 
@@ -185,30 +193,27 @@ function showAlert() {
         errorMessage += '\n'+ `you can't purchase a negative quantity for ${products[products_key][i]["title"]}`;
         break;
       case num % 1 !== 0:
-        errorMessage += '\n'+ `you can't purchase a decimal quantity for ${products[products_key]["title"]}`;
+        errorMessage += '\n'+ `you can't purchase a decimal quantity for ${products[products_key][i]["title"]}`;
         break;
       case num > (products[products_key][i]["qty_available"]):
-        errorMessage += '\n'+ `you can't purchase beyond the available stock for ${products[products_key]["title"]}`;
+        errorMessage += '\n'+ `you can't purchase beyond the available stock for ${products[products_key][i]["title"]}`;
         break;
     };
+
+    //if any input is not zero, set allZero to false
+    if (num !== 0) {
+      allZero = false;
+    };
+
   };
+
+  //if all inputs are 0, make an error message
+  if (allZero) {
+      errorMessage += '\n'+ `you cannot purchase nothing.`;
+  }
 
   //if there are errors, display the accumulated error messages in an alert
   if (errorMessage !== '') {
       alert('Kiki,'+errorMessage);
   }
 };
-
-function decreaseQuantity(textboxId) {
-  let textbox = document.getElementById(textboxId);
-  let currentQuantity = Number(textbox.value);
-  if (currentQuantity > 0) {
-    textbox.value = currentQuantity - 1;
-  }
-}
-
-function increaseQuantity(textboxId) {
-  let textbox = document.getElementById(textboxId);
-  let currentQuantity = Number(textbox.value);
-  textbox.value = currentQuantity + 1;
-}

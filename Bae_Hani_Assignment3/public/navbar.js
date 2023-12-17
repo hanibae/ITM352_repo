@@ -16,9 +16,8 @@ let params = (new URL(document.location)).searchParams;
 let products_key = "hiphop";
 if (params.has('products_key')) {
     products_key = params.get('products_key');
-} else {
-    products_key;
-};
+}
+
 
 ///LOAD SHOPPING CART///
 //reference from Port's A3 example code
@@ -45,7 +44,7 @@ loadJSON('/get_cart', function(response) {
 
         totalItemsInCart += productTotalQuantity;
     }
-});
+})
 
 /*
 ///ACTIVE USERS///
@@ -62,10 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
         //turn the string of key value pairs into an object to be parsed
         let user_cookie = getCookie('user_cookie');
 
-        //make the "login" button into a button with the user's name leading to the cart page
-        document.getElementById('login_logout_button').innerHTML = `
-        <a class="nav-link fw-bold py-1 px-0" href="logout.html"><i class="fa-solid fa-user"></i> ${user_cookie["name"]}</a>
-        `;
+        if (document.getElementById('login_logout_button')) {
+            //make the "login" button into a button with the user's name leading to the cart page
+            document.getElementById('login_logout_button').innerHTML = `
+            <a class="nav-link fw-bold py-1 px-0" href="logout.html"><i class="fa-solid fa-user"></i> ${user_cookie["name"]}</a>
+            `;
+        }
 
         //personalization on the index NEEDEDDDDDDD
     } else {
@@ -102,14 +103,15 @@ function getCookie(cookiename) {
             //extract and parse the value part of the cookie
             let cookieValueString = cookieEntry.substring(name.length, cookieEntry.length);
             return JSON.parse(cookieValueString);
-        };
-    };
+        }
+    }
 
     //return an empty string if the cookie with the specified name is not found
     return "";
-};
+}
 
-function updateCartTotal() {
+
+/*function updateCartTotal() {
     //assuming shopping_cart is an array of items, each with a 'quantity' property
     let newTotal = 0;
 
@@ -123,4 +125,29 @@ function updateCartTotal() {
 
     //update the display element in the navbar
     document.getElementById('cart_total').innerHTML = totalItemsInCart;
-};
+}*/
+
+function updateCartTotal() {
+    // assuming shopping_cart is an object with product keys
+    let newTotal = 0;
+
+    // loop through each product key in the shopping_cart
+    for (let productKey in shopping_cart) {
+        // get the quantities array for the current product key
+        let productQuantities = shopping_cart[productKey];
+
+        // calculate the total quantity for the current product and add it to the total
+        let productTotalQuantity = 0;
+        for (let i = 0; i < productQuantities.length; i++) {
+            productTotalQuantity += productQuantities[i];
+        }
+
+        newTotal += productTotalQuantity;
+    }
+
+    // update the totalItemsInCart variable with the new total
+    totalItemsInCart = newTotal;
+
+    // update the display element in the navbar
+    document.getElementById('cart_total').innerHTML = totalItemsInCart;
+}

@@ -13,6 +13,8 @@ window.onload = function() {
         `)
     } else {
         document.getElementById("thankUsername").innerHTML = user_cookie["name"];
+        document.getElementById("verifyUsername").innerHTML=user_cookie["name"];
+        document.getElementById("verifyEmail").innerHTML=user_cookie["email"];
         document.getElementById("shippingUsername").innerHTML = user_cookie["name"];
     };
 };
@@ -72,49 +74,51 @@ function generateItemRows() {
     table.innerHTML = '';
 
     //loop through the products arrays
-    for (i in products) {
-        let itemName = products[i]["title"];
-        let itemArtist = products[i]["artist"];
-        let itemPrice = products[i]["price"];
-        let itemIcon = products[i]["image"];
-        let itemQuantity = params.get(`qty_${i}`);
+    for (let products_key in shopping_cart) {
+        for (let i in products_key) {
+            let itemName = products[products_key][i]["title"];
+            let itemArtist = products[products_key][i]["artist"];
+            let itemPrice = products[products_key][i]["price"];
+            let itemIcon = products[products_key][i]["image"];
+            let itemQuantity = shopping_cart[products_key][i];
+            if (itemQuantity == 0 || itemQuantity == '') continue;
 
-        //calculate the extended price and subtotal
-        let extendedPrice = itemPrice * itemQuantity;
-        subtotal += extendedPrice;
+            extendedPrice = itemPrice * itemQuantity;
+            subtotal += extendedPrice;
 
-        //generate the row only if the user enters a positive quantity, NOT "0"
-        if (itemQuantity != 0) {
-            let row = table.insertRow();
-
-
-            //display the small icon of the item, and the item title
-            /*When the user hovers over the icon, the popup window appears with a product description.
-            A product description is about the artist who made the album.
-            Popup window is initially set to "display: none" by default, and becomes visible when the mouse is hovered over by the function showPopup().*/
-            /*Conversely, when the mouse is moved away, the popup window disappears.
-            Popup window becomes invisible when the mouse is moved away by the function showPopup()*/
-            row.insertCell(0).innerHTML = `
-            <img src="${itemIcon}" id="itemIcon${i}" width="12.5" height="12.5" onmouseover="showPopup(${i})" onmouseout="hidePopup(${i})">
-            ${itemName}
-            <div id="popup${i}" style="display: none; position: absolute; background-color: rgba(75, 75, 75, 0.5); padding: 5px; border: none;">by ${itemArtist}</div>
-            `;
+            //generate the row only if the user enters a positive quantity, NOT "0"
+            if (itemQuantity != 0 && itemQuantity != undefined) {
+                let row = table.insertRow();
 
 
-            //display the item purchase quantity
-            row.insertCell(1).innerHTML = itemQuantity;
+                //display the small icon of the item, and the item title
+                /*When the user hovers over the icon, the popup window appears with a product description.
+                A product description is about the artist who made the album.
+                Popup window is initially set to "display: none" by default, and becomes visible when the mouse is hovered over by the function showPopup().*/
+                /*Conversely, when the mouse is moved away, the popup window disappears.
+                Popup window becomes invisible when the mouse is moved away by the function showPopup()*/
+                row.insertCell(0).innerHTML = `
+                <img src="${itemIcon}" id="itemIcon${i}" width="12.5" height="12.5" onmouseover="showPopup(${i})" onmouseout="hidePopup(${i})">
+                ${itemName}
+                <div id="popup${i}" style="display: none; position: absolute; background-color: rgba(75, 75, 75, 0.5); padding: 5px; border: none;">by ${itemArtist}</div>
+                `;
 
-            //display the item price
-            row.insertCell(2).innerHTML = '$' + itemPrice.toFixed(2);
 
-            //display the item with the calculated extended price
-            row.insertCell(3).innerHTML = '$' + extendedPrice.toFixed(2);
+                //display the item purchase quantity
+                row.insertCell(1).innerHTML = itemQuantity;
+
+                //display the item price
+                row.insertCell(2).innerHTML = '$' + itemPrice.toFixed(2);
+
+                //display the item with the calculated extended price
+                row.insertCell(3).innerHTML = '$' + extendedPrice.toFixed(2);
+            };
+
+        //display the total price
+        document.getElementById('total_cell').innerHTML = '$' + total.toFixed(2);
         };
-
     };
 
-    //display the total price
-    document.getElementById('total_cell').innerHTML = '$' + total.toFixed(2);
 };
 
 

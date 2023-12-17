@@ -1,87 +1,98 @@
 document.addEventListener('DOMContentLoaded', function() {
-    //get the table element to populate
-    let table = document.getElementById('cartTable');
-
     //displaying the cart total
     document.getElementById('cart_total').innerHTML = totalItemsInCart;
+
 
     //initialize variables for subtotal, tax, shippping charge, and total
     let subtotal=0;
 
-    //loop through the products arrays
-    for (let products_key in shopping_cart) {
-        for (let i in shopping_cart[products_key]) {
-            let itemName = products[products_key][i]["title"];
-            let itemPrice = products[products_key][i]["price"];
-            let itemIcon = products[products_key][i]["image"];
-            let itemQuantity = Number(shopping_cart[products_key][i]);
+    let cartTable = document.getElementById('cartTable')
 
-            //calculate the extended price and subtotal
-            let extended_price = itemQuantity * itemPrice;
-            subtotal += extended_price;
+    if (cartTable) {
+        //loop through the products arrays
+        for (let products_key in shopping_cart) {
+            for (let i in shopping_cart[products_key]) {
+                let itemName = products[products_key][i]["title"];
+                let itemPrice = products[products_key][i]["price"];
+                let itemIcon = products[products_key][i]["image"];
+                let itemQuantity = Number(shopping_cart[products_key][i]);
 
-            //generate the row only if there is a desired quantity, NOT "0"
-            if (itemQuantity != 0) {
-                let row = table.insertRow();
+                //calculate the extended price and subtotal
+                let extended_price = itemQuantity * itemPrice;
+                subtotal += extended_price;
 
-                //display the small icon of the item, and the item title
-                row.insertCell(0).innerHTML = `
-                <img src="${itemIcon}" id="itemIcon${i}" width="12.5" height="12.5"> ${itemName}
-                `;
+                //generate the row only if there is a desired quantity, NOT "0"
+                if (itemQuantity > 0) {
+                    document.querySelector('#cartTable').innerHTML += `
+                    <tr>
+                        <td>
+                            <img src="${itemIcon}" id="itemIcon${i}" width="12.5" height="12.5"> ${itemName}
+                        </td>
+                        <td>
+                            <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <button class="btn btn-secondary" 
+                                onclick="
+                                    if (document.getElementById('cartInput_${products_key}${i}').value == 0) { return;}
+                                    document.getElementById('cartUpdate').style.display = 'inline-block';
+                                    document.getElementById('cartSubmit').style.display = 'none';
+                                    event.preventDefault();
+                                    update_qty('cartInput_${products_key}${i}', -1, ${products[products_key][i].price})">
+                                -
+                                </button>
 
-                //display the item purchase quantity
-                row.insertCell(1).innerHTML = `
-                <div class="btn-group me-2" role="group" aria-label="Second group">
-                    <button class="btn btn-secondary" 
-                    onclick="
-                        if (document.getElementById('cartInput_${products_key}${i}').value == 0) { return;}
-                        document.getElementById('cartUpdate').style.display = 'inline-block';
-                        document.getElementById('cartSubmit').style.display = 'none';
-                        update_qty('cartInput_${products_key}${i}', -1, ${products[products_key][i].price})">
-                    -
-                    </button>
+                                <input style="outline: none; box-shadow: none; width:65px;" type="text" class="btn btn-outline-secondary" name="cartInput_${products_key}${i}" id="cartInput_${products_key}${i}" value="${itemQuantity}" readonly onchange="inventory_amt(this)">
 
-                    <input style="outline: none; box-shadow: none; width:65px;" type="text" class="btn btn-outline-secondary" name="cartInput_${products_key}${i}" id="cartInput_${products_key}${i}" value="${itemQuantity}" readonly onchange="inventory_amt(this)" disabled>
-
-                    <button class="btn btn-secondary" 
-                    onclick="
-                        if (document.getElementById('cartInput_${products_key}${i}').value == ${products[products_key][i].qty_available}) return
-                        document.getElementById('cartUpdate').style.display = 'inline-block';
-                        document.getElementById('cartSubmit').style.display = 'none';
-                        update_qty('cartInput_${products_key}${i}', 1, ${products[products_key][i].price});">
-                    +
-                    </button>
-                </div>
-                `;
-
-                //display the item price
-                row.insertCell(2).innerHTML = '$' + itemPrice.toFixed(2);
-
-                //display the item with the calculated extended price
-                row.insertCell(3).innerHTML = `
-                $<span id= "ep_cartInput_${products_key}${i}">${extended_price.toFixed(2)}</span>
-                `;
-
-                // display the remove button
-                row.insertCell(4).innerHTML = `
-                    <i class="fas fa-trash" onclick="
-                        removeItem('${products_key}', ${i});
-                        document.getElementById('cartUpdate').style.display = 'inline-block';
-                        document.getElementById('cartSubmit').style.display = 'none'">
-                    </i>
-                `;
-            };         
+                                <button class="btn btn-secondary" 
+                                onclick="
+                                    if (document.getElementById('cartInput_${products_key}${i}').value == ${products[products_key][i].qty_available}) return
+                                    document.getElementById('cartUpdate').style.display = 'inline-block';
+                                    document.getElementById('cartSubmit').style.display = 'none';
+                                    event.preventDefault();
+                                    update_qty('cartInput_${products_key}${i}', 1, ${products[products_key][i].price});">
+                                +
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            $${itemPrice.toFixed(2)}
+                        </td>
+                        <td>
+                            $<span id= "ep_cartInput_${products_key}${i}">${extended_price.toFixed(2)}</span>
+                        </td>
+                        <td>
+                            <i class="fas fa-trash" onclick="
+                            removeItem('${products_key}', ${i});
+                            document.getElementById('cartUpdate').style.display = 'inline-block';
+                            document.getElementById('cartSubmit').style.display = 'none'">
+                            </i>
+                        </td>
+                    </tr>
+                    `
+                };         
+            };
         };
+
+        //initial calculation of tax, shipping, and total
+        update_totals();
+
+        //if nothing has been added to the cart, hide the submit buttons and display 'empty cart'
+        if (subtotal === 0) {
+            document.getElementById('cart_container').innerHTML = `<p class="lead">Your cart is empty</p>`;
+        } else {
+            document.getElementById('cartUpdate').style.display = 'none';
+        }
     };
-
-    //initial calculation of tax, shipping, and total
-    update_totals();
-
-    //if nothing has been added to the cart, hide the submit buttons and display 'empty cart'
-    if (subtotal === 0) {
-        document.getElementById('cart_container').innerHTML = `<p class="lead">Your cart is empty</p>`;
-    }
+    
 });
+
+//if no user_cookie is detected, send the user to the login page
+if (getCookie("user_cookie") != false) {
+    user_cookie = getCookie("user_cookie");
+}
+
+if (typeof user_cookie !== 'undefined') {
+    document.getElementById('shippingUsername').innerHTML = user_cookie["name"];
+}
 
 function inventory_amt(input) {
     for (let i in products[products_key]) {
@@ -108,7 +119,7 @@ function removeItem(productKey, index) {
     //update extended prices and totals
     update_totals();
 
-    updateCartTotal();
+    //updateCartTotal();
 }
 
 function update_qty(input, change, price) {
@@ -126,7 +137,8 @@ function update_qty(input, change, price) {
         };
 
         //the quantity in the input box becomes the new qty
-        input_element.value = new_qty;
+        //input_element.value = Number(new_qty);
+        input_element.setAttribute('value', new_qty);
 
         //update extended price
         let extended_price_element = document.getElementById(`ep_${input}`);
@@ -137,22 +149,21 @@ function update_qty(input, change, price) {
         //recalculate tax, subtotal, shipping, and total
         update_totals();
 
-        updateCartTotal();
+        //updateCartTotal();
     }
 }
 
 function update_totals() {
     //reset values
-    let subtotal = 0;
+    subtotal = 0;
+    let total = 0;
     let taxRate = 0.04712 ; //4.712%
     let taxAmount = 0;
-    let total = 0;
     let shippingCharge = 0;
 
     //iterate through products and quantities in the shopping cart
     for (let products_key in shopping_cart) {
         for (let i in shopping_cart[products_key]) {
-            let quantities = shopping_cart[products_key][i];
             let input_element = document.getElementById(`cartInput_${products_key}${i}`);
 
             //get the user input quantity or use the cart quantity if the input is not present
@@ -181,13 +192,14 @@ function update_totals() {
     taxAmount = subtotal * taxRate;
     total = subtotal + taxAmount + shippingCharge ;
 
-    //update the HTML content to displa the calculated values
+    ///UPDATE the HTML content to display the calculated values
     //set the total cell in bold
-    document.getElementById('total_cell').innerHTML = `$${total.toFixed(2)}`;
+    document.querySelector('#total_cell').innerHTML = `$${total.toFixed(2)}`;
 
 
     //set the subtotal, tax, and total cells
-    document.getElementById('subtotal_cell').innerHTML = '$' + subtotal.toFixed(2);
-    document.getElementById('tax_cell').innerHTML = '$' + taxAmount.toFixed(2);
-    document.getElementById('shipping_cell').innerHTML = '$' + shippingCharge.toFixed(2);
+    document.querySelector('#subtotal_cell').innerHTML = '$' + subtotal.toFixed(2);
+    document.querySelector('#tax_cell').innerHTML = '$' + taxAmount.toFixed(2);
+    document.querySelector('#shipping_cell').innerHTML = '$' + shippingCharge.toFixed(2);
 };
+
